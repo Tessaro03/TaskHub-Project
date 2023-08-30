@@ -1,0 +1,47 @@
+@charset "utf-8";
+
+:root{
+    --cor01: #422d87;
+    --cor02: #573FA6;
+    --cor03: #763fa6;
+    
+}
+
+@media screen and (min-width: 850px) {
+
+    #article-primeira-home  > h1{
+        margin: auto;
+        margin-top: 90px;
+        margin-bottom: 70px;
+        font-size:72px;
+        text-decoration: line-through;
+        
+    } 
+
+    #article-primeira-home  > h2{
+        margin: auto;
+        font-size: 38px;
+    }
+    
+    
+     #article-primeira-home > h3{
+        font-size: 24px;
+        color: rgb(194, 194, 194);
+     }
+
+     
+#btn-login-home{
+    margin-top: 70px;
+    font-size: 24px;    
+    padding: 10px;
+}
+
+#btn-cadastrar-home{
+    margin-top: 10px;
+    font-size: 24px;
+    padding: 12px;    
+}
+  
+
+   
+}

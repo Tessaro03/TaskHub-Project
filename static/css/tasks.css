@@ -1,0 +1,737 @@
+@charset "utf-8";
+
+:root{
+    --cor01: #422d87;
+    --cor02: #573FA6;
+    --cor03: #763fa6;
+    
+}
+
+* { 
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    height: 100vh;
+}
+
+a { text-decoration: none;}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: linear-gradient(to right, rgb(83, 4, 135), #3a1f46 );
+    height: 70px;
+    border: 1px solid rgba(0, 0, 0, 0.102);
+}
+
+
+#logo {
+    height:40px;
+    padding: 5px 15px 2px 20px;
+    background-image:linear-gradient(to right, var(--cor02), var(--cor03) );
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    text-shadow: 0px 0px 20px rgba(0, 0, 0, 0.093);
+    border-radius: 0px 10px 10px 0px;
+    margin-left: -1px;
+}
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+  
+.header-buttons {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    padding-top: 7px;
+    margin-right: 5px;
+}
+
+
+
+#botao-header {
+    width: 60px;
+    height: 25px;
+    background-color: white;
+    margin-right: 10px; 
+    border-radius: 5%;
+}
+.buscar-pessoas-btn{
+    padding-top: 2px;
+}
+
+
+.notificacao-btn{
+    margin-left: 7px;
+}
+
+#icone {
+    width: 35px;
+    height: 35px;
+    margin-left: 10px;
+    margin-bottom: 2px;
+}
+#icone > img{
+    width: 32px;
+    height: 32px;
+}
+
+#busca-amigos{
+    display: none;
+    height: 40px;
+    text-align: center;
+}
+
+#busca-amigos > form > input {
+    margin: auto;
+    margin-top: -3px;
+    padding: 8px;
+    padding-left: 5px;
+    height: 15px;
+    width: 92%;
+    border-radius: 5px;
+    border: 3px solid var(--cor02);
+    font-size: 16px;
+
+}
+#busca-amigos > form > input:focus {
+    outline: none;
+    color: #000000;
+    padding-left: 5px;
+}
+
+
+#menu-tarefas{
+    height: 30px;   
+    background-image:linear-gradient(to right, var(--cor02), var(--cor03) );
+    text-align: center;
+}
+
+
+#menu-tarefas > h2{
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    padding-top: 3px;
+}
+
+
+#list-task{
+    display: none;
+    text-align: center;
+    padding-bottom: 15px;
+    border: 1px solid rgb(229, 229, 229);
+}
+
+#list-task > form >  input{
+    padding: 8px;
+    padding-left: 5px;
+    width: 72%;
+    height: 15px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #392a6b2c;
+    font-size: 16px;
+}
+
+
+
+#list-task > form > input:focus {
+    outline: none;
+    color: #000000;
+    padding-left: 5px;
+}
+
+#list-task > form > input::placeholder{
+    color: #00000069;
+}
+
+
+.projetos{
+    text-align: left;
+    margin-top: 20px;
+    color: rgb(29, 29, 29);
+}
+
+.projetos > a > p{
+    color: var(--cor01);
+    margin-bottom: 10px;
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+#list-botao{
+    margin: auto;
+    padding: 5px;
+    text-align: center;
+    width: 110px;
+    height: 18px;
+    background-image: linear-gradient(to right, var(--cor02), var(--cor03));
+    box-shadow: 0px 0px 20px #9888d03f;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+#list-botao:hover{
+    background-image: linear-gradient(to right, white , rgb(239, 239, 239));
+    border: 1px solid var(--cor01);
+    color: var(--cor01);
+}
+/*----------------------------------------------------*/
+
+#menu-tarefas-tela{
+    display: none;
+}
+#menu-tarefas-tela > h2{
+    display: none;
+}
+#list-task-tela{
+    display: none;
+}
+.projetos-tela > a > p{
+    display: none;
+}
+#list-botao-tela{
+    display: none;
+}
+
+/*----------------------------------------------------*/
+
+/*-------------- Aréa de Filtro -------------------------------------------------*/
+
+#menu-tasks{
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 55px;
+    border: 1px solid #392a6b2c;
+
+}
+
+#filtro-cores {
+    margin-left: 5px;
+    width: 100px;
+    height: 40px;
+    display: flex; /* Adicionado */
+    align-items: center;
+}
+    
+
+#menu-tasks > h3{
+    display: none;
+}
+
+
+#adicionar-listagem{
+    display: inline-flex;
+}
+#listagens{
+    display: inline-flex;
+    margin-right: 5px;
+    border-radius: 5px;
+    height: 45px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+#inline{
+    display: block;
+    padding-top: 5px;
+    padding-left: 3px;
+    width: 40px;
+    
+}
+
+#inblock{
+    display: none;
+    padding-top: 6px;
+    width: 40px;
+}
+
+
+#adicionar{
+    display: none;
+    margin-right: 7px;
+    color: #ffffff;
+    font-size: 18px;
+    padding: 12px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.089);
+    background-color: var(--cor02);
+}
+/*-------------- Aréa de Tasks ------------------------------------------------------*/
+
+
+#nenhum-projeto{
+    margin-top: 100px;
+}
+#nenhum-projeto > h2{
+    margin: auto;
+    width: 200px;
+}
+#adicionar-projeto{
+    margin: auto;
+    margin-top: 10px;
+    width: 220px;
+    padding: 10px;
+    color: white;
+    background-image:linear-gradient(to bottom, var(--cor02) 90%, var(--cor03) );
+    border-radius: 10px;
+    
+}
+
+#tasks{
+    text-align: center;
+    background-image: linear-gradient(to right, #f6f8fb, #ffffff);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+  }
+
+.dropbtn{
+    border-radius: 5px;
+    padding: 8px;
+    background-image:linear-gradient(to bottom, var(--cor02) 90%, var(--cor03) );
+    border: 1px solid #573FA6;
+    color: #ffffff;
+    box-shadow: 0px 0px 20px rgba(103, 31, 238, 0.068);
+}
+
+
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 120px;
+    height: 130px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .dropdown-content > a {
+    margin: auto;
+    margin-top: 5px;
+    color: #291d53;
+    padding: 4px;
+    text-decoration: none;
+    display: block;
+    width: 85%;
+  }
+  .dropdown-content > a:hover {
+    background-image:linear-gradient(to right, var(--cor02) , var(--cor03) );
+    color: white;
+    border-radius: 5px;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+
+.cores{
+    box-shadow: 0px 0px 20px rgba(188, 20, 255, 0.163);
+    width: 32px;
+    height: 32px;
+    border-radius: 50px;
+    border: 0px solid #ffffff5e;
+   
+}
+
+.cores:hover{
+    transition: transform 1s ease;
+    transform: rotate(360deg);
+
+}
+
+
+
+#filtro-verde{ background-color: #92fc8d;  box-shadow: 0px 0px 6px #92fc8d;}
+#filtro-amarelo{ background-color: #fed148; box-shadow: 0px 0px 6px #fed148;}
+#filtro-vermelho{ background-color: #ff7a7a; box-shadow: 0px 0px 6px #ff7a7a;}
+#filtro-azul{ background-color: #55adfb; box-shadow: 0px 0px 6px #55adfb;}
+#filtro-roxo{ background-color: #cc7aff; box-shadow: 0px 0px 6px #f592fa;}
+#filtro-rosa{ background-color: #f592fa; box-shadow: 0px 0px 6px #cc7aff;}
+
+.dropdown-cores {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    width: 230px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.171);
+    border-radius: 5px;
+    z-index: 1;
+    text-align: center;
+}
+
+  .dropdown-cores > a {
+    margin: auto;
+    margin: 3px;
+    padding: 4px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.252);
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.142);
+  }
+ 
+  .dropdown:hover .dropdown-cores {
+    display: block;
+    
+  }
+
+
+  #tasks-incard{
+    display: block;
+    
+  }
+  
+  #tasks-inline{
+    display: none;
+    
+}
+/*-------------- Task em Card ------------------------------------------------------*/
+
+
+
+.task{
+    position: relative;
+    transition: height 0.3s ease;
+    display: inline-block;
+    width: 300px;
+    height: 380px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.167);
+    background-color: white;
+}
+
+
+.task-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px;
+}
+
+#tipo{
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 5px;
+   
+}
+#tipo > p{
+    color: rgb(255, 255, 255);
+    padding-top: 7px;
+    text-shadow: 0px 0px 1px black;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1);
+    font-size: 22px;
+}
+.preenchido{
+    display: block;
+    color: #323232;
+    padding: 5px;
+    background-color: rgba(148, 148, 148, 0.231);
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 2px;
+}
+
+
+
+.task-header > p > img{
+    margin-bottom: -3px;
+}
+
+.tarefas{
+    
+    height: 210px;
+}
+
+.tarefas > h4{
+    margin: 5px;
+    text-align: left;
+    font-size: 22px;
+    color: black;
+}
+
+
+.tarefas > #descricao{
+    color: rgb(92, 92, 92);
+    text-align: left;
+    margin: 8px;
+    margin-bottom: 30px;
+    font-size: 14px;
+    width: 95%;
+    
+}
+#contador{
+    color: rgb(92, 92, 92);
+    text-align: left;
+    font-size: 16px;
+    margin: 8px;
+}
+#contador > strong{
+    color: rgb(0, 0, 0);
+}
+#progresso{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 93%;
+    color: black;
+    font-size: 14px;
+    margin-bottom: 3px;
+}
+
+#barra-percentual{
+    margin: auto;
+   
+    width: 92%;
+    border-radius: 5px;
+    background-color: rgb(229, 229, 229);
+   
+}
+
+#percentual{
+    text-align: left;    
+    width: 50%;
+    height: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.funcoes{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 14px;
+    height: 20px;
+}
+#icones{
+    display: inline-flex;
+    text-align: center;
+    margin-bottom: 10px;
+    }
+
+#icones-task{
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    background-color: rgb(255, 255, 255);
+    margin-right: 4px;
+}
+#icones-task > img{
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+}
+
+#icones-task > a > img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+#icones-task > a{
+    font-size: 36px;
+}
+
+#funcoes-botao{
+    display: flex; 
+    align-items: center;
+    color: rgb(0, 0, 0);
+    
+}
+
+.excluir{
+    margin-right: 10px;
+}
+
+.editar{
+    margin-right: 7px;
+    cursor: pointer;
+}
+
+.opcao-excluir{
+    display: none;
+    align-items: center;
+    width: 80%;
+    margin:auto;
+    margin-top: 5px;
+}
+
+.excluir-aceitar{
+    margin:auto;
+    padding: 7px;
+    width: 100%;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 0, 0, 0.544);
+}
+.excluir-aceitar:hover{
+    border: 1px solid red;
+    background-color: white;
+    color: red;
+} 
+
+
+/*-------------- Task em Linha ------------------------------------------------------*/
+.task-inline{
+    position: relative;
+    transition: height 0.3s ease;
+    width: 95%;
+    height: 120px;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.167);
+    background-color: white;
+    margin-bottom: 15px;
+}
+
+.titulos{
+    display: inline-flex;
+}
+
+.task-footer{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    margin-top: 0px;
+}
+
+#barra-percentual-inline{
+    position: absolute;
+    top: 20px;
+    margin-left: 10px;
+    width: 65%;
+    border-radius: 5px;
+    background-color: rgb(229, 229, 229);
+   
+}
+#percentual-inline{
+    width: 20%;
+    height: 10px;
+    border-radius: 5px;
+   
+}
+#section-inline{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-top: -5px;
+}
+#section-inline > p{
+    color: #000000;
+    padding: 5px;
+    background-color: #0000000b;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-right: 10px;
+   
+   
+}
+
+ #porcetagem{
+    display: inline-flex; 
+    align-items: center;
+ }
+
+ #valor-porcentagem{
+    
+    margin-bottom: 16px;
+    margin-left: 14px;
+    color: rgb(0, 0, 0);
+}
+
+.titulos > h4{
+    margin: 4px;
+    text-align: left;
+    font-size: 20px;
+    color: black;
+}
+#funcoes-botao-inline{
+    display: flex; 
+    align-items: center;
+    margin-top: 10px;
+    margin-right: 5px;
+    color: rgb(0, 0, 0);
+    
+}
+
+
+.excluir-inline{
+    margin-right: 10px;
+
+}
+
+
+.opcao-excluir-inline{
+    display: none;
+    align-items: center;
+    width: 80%;
+    margin:auto;
+    margin-top: 3px;
+}
+
+
+
+.excluir-aceitar-inline{
+    margin:auto;
+    padding: 7px;
+    width: 50%;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(255, 0, 0, 0.544);
+}
+.excluir-aceitar-inline:hover{
+    border: 1px solid red;
+    background-color: white;
+    color: red;
+} 
+
+.danger{
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 240px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgb(236, 130, 130);
+    color: white;
+    border: 1px solid red;
+    border-radius: 10px;
+}
+
+.success{
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 240px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgb(166, 148, 234);
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(114, 75, 182);
+    border-radius: 10px;
+}
+

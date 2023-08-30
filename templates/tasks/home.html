@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskHub</title>
+    <link rel="stylesheet" href="{% static 'css/tasks.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mediaQuery/home.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'media/icones/prancheta.png'%}">
+</head>
+<body style=" background-image: url({% static 'media/background/fundoBlocos.jpeg' %}); background-size: cover;">
+    <header style='height: 10vh; background-image:linear-gradient( to right, rgba(0, 0, 0, 0.542),rgba(0, 0, 0, 0.542)) ;';  >
+        <a id="logo" href="{% url 'home' %}"><h1>TaskHub </h1></a>
+        <div class="header-buttons">
+            <a href="{% url 'login' %}" class='btn-entrar-home'><div><p><strong>Entrar</strong></p></div></a>
+        </div>
+    </header>
+    <main>
+        <section id='section-primeira-home' >
+            <article id='article-primeira-home'>
+                <h1>TaskHub </h1>
+                <h2>Construa, Conquiste e Compartilhe </h2>
+                <h3> Projetos que Transformam Vidas. </h3>
+                <h4>Quando quiser, onde quiser!</h4>
+                <a href="{% url 'login' %}" ><div id='btn-login-home'><p ><strong>Login</strong></p></div></a>
+                <a href="{% url 'cadastro' %}" ><div id='btn-cadastrar-home'><p><strong>Cadastrar-se</strong></p></div></a>
+            </article>
+        </section>
+        
+    </main>
+</body>
+

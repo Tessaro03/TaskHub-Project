@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+:root{
+    --cor01: #422d87;
+    --cor02: #573FA6;
+    --cor03: #763fa6;
+    
+}
+@media screen and (min-width: 850px) {
+
+    #tela-projeto{
+        width: 100%;
+        height: calc(100vh - 70px);
+        display: inline-flex;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+    
+    #sessoes-projeto{
+        display: inline-flex;
+        width: 82%;
+        height:100%;
+    }
+
+    #sessao-projeto{
+        width: 50%;
+    }
+
+    #sessao-tarefas{
+        width: 50%;
+    }
+
+    
+    
+    #card-projeto{
+        margin-top: 25px;
+    }
+
+    #card-equipe{
+        height: 200px;
+        overflow-y: auto;
+    }
+
+    #todas-tarefas{
+        padding-top: 10px;
+        padding-bottom: 10px;
+        height: 80%;
+        overflow-y: auto;
+    }
+}

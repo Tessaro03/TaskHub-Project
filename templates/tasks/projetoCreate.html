@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% if projeto_id != 000 %}
+<div class='titulo'>
+    <h2> Editar Projeto</h2>
+</div>
+<section id='formulario'>
+    <form action="{% url 'editar_projeto' projeto_id %}" method="POST" enctype="multipart/form-data">
+{% else %}
+<div class='titulo'>
+    <h2 >Criar Projeto</h2>
+</div>
+<section id='formulario'>
+    <form action="{%url 'novo_projeto'  %}" method='POST' enctype='multipart/form-data'> 
+    {% endif %}
+        {% csrf_token %}
+        <div>
+            <div class='texts'>
+                {% for field in form.visible_fields  %}
+                    {% if field.label == 'Titulo' %}
+                        <label for="{{ orm.id_for_label}}">
+                            <div class='labels'><p><strong>{{ field.label }}:</strong></p></div>
+                        </label>
+                        <div class='titulos'>{{ field }}</div>
+                    {% elif field.label == 'Descrição' %}
+                        <label for="{{ orm.id_for_label}}">
+                            <div class='labels'><p><strong>{{ field.label }}:</strong></p></div>
+                        </label>
+                        <div class='descricao'>{{ field }}</div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class='selecionar'>
+            {% for field in form.visible_fields  %}
+                {% if field.label == 'Cor' %}
+                    <div id='cores'>
+                        <label for="{{ orm.id_for_label}}">
+                        <div class='labels'><p><strong>{{ field.label }}</strong></p></div>
+                        </label>
+                        <select name="cor" class="form-control" id="id_cor">
+                            <option value="#ff7a7a" style="background-color: #ff7a7a; color: white;">Vermelho</option>
+                            <option value="#fed148" style="background-color: #fed148; color: white;">Amarelo</option>
+                            <option value="#92fc8d" style="background-color: #92fc8d; color: white;">Verde</option>
+                            <option value="#55adfb" style="background-color: #55adfb; color: white;">Azul</option>
+                            <option value="#f592fa" style="background-color: #f592fa; color: white;">Roxo</option>
+                            <option value="#cc7aff" style="background-color: #cc7aff; color: white;">Rosa</option>
+                        </select>
+                    </div>
+                {% elif field.label == 'Status'%}
+                    <div id='status'>
+                        <label for="{{ orm.id_for_label}}">
+                            <div class='labels'><p><strong>{{ field.label }}</strong></p></div>
+                        </label>
+                        {{ field }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <div class='datas'>
+            {% for field in form.visible_fields  %}
+                {% if field.label == 'Data Inicial' %}
+                    <div id='data_inicial'>
+                        <label for="{{ orm.id_for_label}}">
+                        <div class='labels'><p><strong>{{ field.label }}</strong></p></div> </label>
+                        <input type="date" name="data_inicio" class="form-control" required="" id="id_data_inicio">
+                    </div>
+                    {% elif field.label == 'Data Final'%}
+                        <div id='data_final'>
+                            <label for="{{ orm.id_for_label}}">
+                            <div class='labels'><p><strong>{{ field.label }}</strong></p></div> </label>
+                            <input type="date" name="data_termino" class="form-control" required="" id="id_data_termino">
+                        </div>
+                    {% endif %}
+            {% endfor %}
+            </div>
+            {% if projeto_id != 000 %}
+                <button type="submit" class='botao_criar'> <strong>Editar Projeto</strong></button>
+            {% else %}
+                <button type="submit" class='botao_criar'> <strong>Criar Projeto</strong></button>
+            {% endif %}
+        </div>
+    </form>
+</section>    
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div id='tela-projeto'>
+    <div id='telas-projetos' >
+        <div id="menu-tarefas-tela">
+            <h2>Meus Projetos</h2>
+        </div>
+        <nav id="list-task-tela">
+            <form action="{% url 'buscar' %}">
+                <input type="text" name="buscar" id="" placeholder=" Pesquise aqui...">
+            </form>
+            <div class="projetos-tela">
+                {% for projetoo in projetos %}
+                {% if projetoo == projeto %}
+                    <a href="{% url 'projeto' projetoo.id %}" ><p style='background-image:linear-gradient(to right, {{projeto.cor}}, var(--cor03) ); color: white;'><strong> {{projetoo.titulo}}</strong></p></a>
+                {% else %}
+                    <a href="{% url 'projeto' projetoo.id %}" ><p><strong> {{projetoo.titulo}}</strong></p></a>
+                {% endif %}
+                {% endfor %}
+            </div>
+            <a href="{% url 'criarProjeto' %}"><div id="list-botao-tela"> <strong>Criar Projeto</strong></div></a>
+        </nav>
+    </div>
+       
+    <div id='sessoes-projeto'>
+        <div id='sessao-projeto'>
+             {% for message in messages %}
+                <div class='{{message.tags}}'> 
+                    <p> <strong>{{ message }}</strong></p> 
+                </div>
+            {% endfor %}
+            <div id='card-projeto'>
+                <div id='projeto-header'>
+                    <div id='icone-projeto' style="background-color: {{ projeto.cor }}; box-shadow: 0px 0px 6px {{ projeto.cor }};"><p><strong>{{ projeto.titulo|slice:":2" }}</strong></p></div>
+                    <h1> {{ projeto.titulo }} </h1>
+                    {% if tarefas_completas == total_tarefas %}
+                        <img src="{% static 'media/icones/verificado.png'%}" alt=""> 
+                    {% else %}
+                        <div class='tarefa-status' style='background-image: linear-gradient(to right, white, white )'></div>
+                    {% endif %}
+                </div>
+                <div id='projeto-descricao'>
+                    <p> {{ projeto.descricao }} </p>
+                </div>
+                <div id='projeto-datas'>
+                    <div>
+                        <p>Inicio: </p>
+                        <div class='data'> <p><img src="{% static 'media/icones/datas.png'%}" alt=""> {{ projeto.data_inicio|date:'d/m/Y '}} </p></div>
+                    </div>
+                    <div >
+                        <p>Final: </p>
+                        <div class='data'> <p><img src="{% static 'media/icones/datas.png'%}" alt=""> {{ projeto.data_termino|date:'d/m/Y '}} </p></div>
+                    </div>
+                </div>
+            </div>
+            <div class='tarefa'>
+                <a id='equipe-config' href="{% url 'convidaEquipe' projeto.id %}">
+                    <img src="{% static 'media/icones/definicoes (1).png'%}" alt=""></img>
+                </a>
+                <h1> Equipe </h1>
+                <div id='tarefa-quantidade'><p> <strong>{{ equipe.count }}</strong></p></div>
+            </div>
+            <div id='card-equipe'>
+                <p> Equipe: </p>
+                {% for membro in equipe %}
+                <a href="{% url "perfil"  membro.usuario.user.id  %}">
+                    <div class='equipe-membro'>
+                        {% if not  membro.usuario.avatar %}
+                            <div class='equipe-membro-icone'> <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt=""></div>
+                        {% else %}
+                            <div class='equipe-membro-icone'> <img src="{{ membro.usuario.avatar.url }}" alt=""> </img></div>
+                        {% endif %}
+                        <div class="dados-membro-equipe">
+                            <p> {{membro.usuario.nome}} {{membro.usuario.sobrenome}}</p>
+                            <p>{{membro.usuario.empresa}}</p>
+                        </div>
+                    </div>
+                </a>
+
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id='sessao-tarefas'>
+            <div class='tarefa'>
+                <a href="{% url 'criarTarefa' projeto.id %}">
+                    <div id='tarefa-adicionar'><p>+</p></div>
+                </a>
+                <h1> Tarefas </h1>
+                <div id='tarefa-quantidade'><p> <strong>{{ tarefas_completas }}</strong> / {{ total_tarefas }} </p></div>
+            </div>
+            {% if total_tarefas == 0 %}
+                <a href="{% url 'criarTarefa' projeto.id %}">
+                    <div id='criar-tarefa'><h3>Tarefa +</h3></div>
+                </a>
+            {% endif %}
+
+            <div id='todas-tarefas'>
+                {% for tarefa in tarefas %}
+                <div class='card-tarefa' data-tarefa-id="{{ tarefa.id }}">
+                    <div id='tarefa-header'>
+                        <div></div>
+                        <h3>{{ tarefa.titulo }}</h3>
+                        {% if not tarefa.completa %}
+                            <div class='tarefa-status' style='background-image: linear-gradient(to right, white, white)'></div>
+                        {% else %}
+                            <img src="{% static 'media/icones/verificado.png'%}" alt=""> 
+                        {% endif %}
+                    </div>
+                    <div class='tarefa-card tarefa-card-content' style='display:none'>
+                        <div id='tarefa-descricao'>
+                            <p>{{ tarefa.descricao }}</p>
+                        </div>
+                        <div id='tarefa-datas'>
+                            <div>
+                                <p>Inicio: </p>
+                                <div class='data'> <p> <img src="{% static 'media/icones/datas.png'%}" alt=""> {{ tarefa.data_inicio|date:'d/m/Y '}}</p></div>
+                            </div>
+                            <div>
+                                <p>Final: </p>
+                                <div class='data'> <p> <img src="{% static 'media/icones/datas.png'%}" alt=""> {{ tarefa.data_termino|date:'d/m/Y '}}</p></div>
+                            </div>
+                        </div>
+                        <div id='tarefa-membros'>
+                            <p>Membros:</p>
+                            <a href="{% url "MembrosTarefa" projeto.id tarefa.id %}">
+                                <p>Adicionar +</p>
+                            </a>
+                            {%for usuario in usuarioTarefa%}
+                            {% if tarefa.id == usuario.tarefa.id %}
+                            <a href="{% url "perfil" usuario.usuario.user.id %}">
+                                <div class='tarefa-membro'> 
+                                    {% if not usuario.usuario.avatar %}
+                                        <div class='equipe-membro-icone'> <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt=""> </div>
+                                    {% else %}
+                                        <div class='equipe-membro-icone'> <img src="{{ usuario.usuario.avatar.url }}" alt=""> </img></div>
+                                    {% endif %}
+                                    <p> {{usuario.usuario.nome }} {{usuario.usuario.sobrenome }}  </p>
+                                </div>
+                            </a>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div id="tarefa-botao">
+                            <a href="{% url 'excluirTarefa' tarefa.id projeto.id %}">
+                                <div class="excluir"> <img src="{% static 'media/icones/excluir.png'%}" alt=""> </div>
+                            </a>
+                            <a href="{% url 'editar_tarefa' tarefa.id projeto.id %}">
+                                <div class="editar"> <img src="{% static 'media/icones/botao-editar.png'%}" alt=""> </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/tarefas.js' %}"></script>
+{% endblock %}

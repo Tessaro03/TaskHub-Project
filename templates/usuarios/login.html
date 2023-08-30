@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id='login'>
+    {% for message in messages %}
+        <div class='{{message.tags}}'> 
+            <p><strong> {{ message }}</strong></p> 
+        </div>
+    {% endfor %}
+    <div id="header-login">
+        <div id='icone-login'> <p><strong>Login</strong></p> </div>
+
+        <a id='icone-cadastro' href="{% url 'cadastro' %}"><div> <p ><strong>Cadastrar-se</strong></p></div>  </a>
+    </div>
+    <form id='formulario-login'action="{% url 'login'  %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        
+        <div>
+            {% for field in form.visible_fields %}
+            <div class='label-login'>
+                <label for="{{orm.id_for_label}}">  
+                    {% if field.label == "Login" %}
+                        <img src="{% static 'media/icones/do-utilizador (2).png'%}" alt="">
+                    {% elif field.label == "Senha" %}
+                        <img src="{% static 'media/icones/cadeado.png'%}" alt="">
+                    {% endif %}
+                </label>
+                {% if field.label == "Login" %}
+                    <input class="input-login" type="text" name="nome_login" placeholder="Usuário" maxlength="100" required="" id="id_nome_login">
+                
+                {% elif field.label == "Senha" %}
+                    <input class="input-login" type="password" name="senha" placeholder="Senha" maxlength="30" required="" id="id_senha">
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        <button id='botao-login' type='submit'> <h2><strong>Entrar</strong></h2></button>    
+    </form>
+
+</section>
+{% endblock %}

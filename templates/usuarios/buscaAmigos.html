@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+    <section id='notificacoes'>
+        <div class="notificacoes">
+            <h2> Usuários </h2>
+            {% if usuarios.count == 0 %}
+                <h3>Nenhuma Perfil Encontrado</h3>
+            {% else %}
+            {% for amigo in amigos %}
+                <div class='notificacao'>
+
+                    <div class='icone-notificacao'>
+                        {% if not  amigo.avatar %}
+                            <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt="">
+                        {% else %}  
+                            <img src="{{ amigo.avatar.url }}"alt="foto">
+                        {% endif %}
+                    </div>
+                    <div class='notificacao-dados'>
+                        <a href="{% url "perfil" amigo.user.id %}">
+                            <p><strong>{{amigo.nome}} {{amigo.sobrenome}}</strong></p>
+                            <p>{{amigo.empresa}}</p>
+                        </a>
+                    </div>
+                    <div class='notificacao-opcoes'>
+                        <a href="{% url "removerAmigo" amigo.id %}"><div class='notificacao-opcao aceitar'><img src="{% static 'media/icones/rejeitar.png'%}" alt=""></div></a>
+                    </div>
+                    
+                </div>
+            
+            {% endfor %}
+            {% for usuario in usuarios %}
+                <div class='notificacao'>
+                    <div class='icone-notificacao'>
+                        {% if not usuario.avatar %}
+                            <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt="">
+                        {% else %} 
+                            <img src="{{ usuario.avatar.url }}"alt="foto">
+                        {% endif %}
+                    </div>
+                    <div class='notificacao-dados'>
+                        <a href="{% url "perfil" usuario.user.id %}">
+                            <p><strong>{{usuario.nome}} {{usuario.sobrenome}}</strong></p>
+                            <p>{{usuario.empresa}}</p>
+                        </a>
+                    </div>
+                    <div class='notificacao-opcoes'>
+                        <a href="{% url "adicionarAmigo" usuario.id %}"><div class='notificacao-opcao aceitar'><img src="{% static 'media/icones/enviar.png'%}" alt=""></div></a>
+                    </div>
+                </div>
+            
+            {% endfor %}
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

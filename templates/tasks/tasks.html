@@ -1,0 +1,180 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+        <div id="telas-projetos-cards">
+           <div id='telas-projetos'>
+               <div id="menu-tarefas-tela">
+                   <h2>Meus Projetos</h2>
+               </div>
+               <nav id="list-task-tela">
+                   <form action="{% url 'buscar' %}">
+                       <input type="text" name="buscar" id="" placeholder=" Pesquise aqui...">
+                   </form>
+                   <div class="projetos-tela">
+                       {% for projetoo in projetos %}
+                           <a href="{% url 'projeto' projetoo.id %}" ><p><strong> {{projetoo.titulo}}</strong></p></a>
+                       {% endfor %}
+                   </div>
+                   <a href="{% url 'criarProjeto' %}"><div id="list-botao-tela"> <strong>Criar Projeto</strong></div></a>
+               </nav>
+           </div>
+
+            <div id='telas-cards'>
+                <nav id="menu-tasks">
+                    <h3>Tasks</h3>
+                    <div id="filtro-cores">
+                        <div class="dropdown">
+                            <button class="cores"><img src="{% static 'media/icones/roda-de-cores (2).png'%}" alt=""></button>
+                            <div class="dropdown-cores">
+                                <a href="{% url 'filtro' 'cor' '#ff7a7a'%}" id='filtro-vermelho'></a>
+                                <a href="{% url 'filtro' 'cor' '#f592fa'%}" id='filtro-rosa'></a>
+                                <a href="{% url 'filtro' 'cor' '#fed148'%}" id='filtro-amarelo'></a>
+                                <a href="{% url 'filtro' 'cor' '#55adfb'%}" id='filtro-azul'></a>
+                                <a href="{% url 'filtro' 'cor' '#cc7aff'%}" id='filtro-roxo'></a>
+                                <a href="{% url 'filtro' 'cor' '#92fc8d'%}" id='filtro-verde'></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="adicionar-listagem">
+                        <div>
+                            <div class="dropdown">
+                                <button class="dropbtn"><strong>Prioridade</strong></button>
+                                <div class="dropdown-content">
+                                    <a href="{% url 'home'%}">Todos</a>
+                                    <a href="{% url 'filtro' 'status' 'Razoável' %}">Razoável</a>
+                                    <a href="{% url 'filtro' 'status' 'Médio' %}">Médio</a>
+                                    <a href="{% url 'filtro' 'status' 'Alto' %}">Alto</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="listagens">
+                            <div id="inline"><img src="{% static 'media/icones/lista-de-reproducao.png'%}" alt=""></div>
+                            <div id="inblock"><img src="{% static 'media/icones/apps.png'%}" alt=""></div>
+                        </div>
+                    </div>
+                </nav>
+
+                    <section id="tasks">
+                        {% for message in messages %}
+                            <div class='{{message.tags}}'> 
+                                <p> <strong>{{ message }}</strong></p> 
+                            </div>
+                        {% endfor %}
+                        {% if projetos.count == 0 %}
+                            <div id='nenhum-projeto'>
+                                <h2> Nenhum Projeto Encontrado !!</h2>
+                                <a href="{% url 'criarProjeto' %}"><div id='adicionar-projeto'><strong>Criar Projeto</strong> </div> </a>
+                            </div>
+                        {% else %}
+                        <div id="tasks-incard">
+                            {% for projeto, tarefas_completas, porcentagem, equipe in projetos_com_porcentagem %}
+                                <div class="task" data-task-id="{{ projeto.id }}">
+                                    <a href="{% url 'projeto' projeto.id %}">
+                                        <div class="task-header">
+                                            <div id="tipo" style="background-color: {{ projeto.cor }}; box-shadow: 0px 0px 6px {{ projeto.cor }};"><p><strong>{{ projeto.titulo|slice:":2" }}</strong></p></div>
+                                            <div id='info-taskCard'>
+                                                <p class="preenchido"><img src="{% static 'media/icones/relogio.png'%}" alt=""> {{ projeto.data_termino|date:'d/m/Y' }}</p>
+                                                <p class="preenchido">  {{projeto.status}}</p>
+                                            </div>
+
+                                        </div>
+                
+                                    <div class="tarefas">
+                                        <h4> {{projeto.titulo}} </h4>
+                                        <p id="descricao"> {{projeto.descricao }}</p>
+                                        <p id="contador">Tasks Feitas: <strong>{{ tarefas_completas }}</strong>/{{ projeto.tarefa_set.count }}</p>
+                                    </div>
+                                    <div id="progresso">
+                                        <p>Progresso</p>
+                
+                                        <p> {{ porcentagem }}%</p>
+                                    </div>
+                                    </a>
+                                    <div id="barra-percentual">
+                                        <div id="percentual" style="width: {{ porcentagem }}%; background-color: {{ projeto.cor }};  box-shadow: 0px 0px 6px {{ projeto.cor }};">  </div>
+                                    </div>
+                                    <div class="funcoes">
+                                        <div id='icones'>
+                                            {% for usuario in equipe|slice:":3" %}
+                                            {% if not  usuario.usuario.avatar %}
+                                                    <div id="icones-task">  <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt=""> </div>
+                                            {% else %}  
+                                                <div id="icones-task"><a href=""><img src="{{ usuario.usuario.avatar.url }}" alt="x"> </a></div>
+                                            {% endif %}
+                                            {% endfor %}
+                                            <div id="icones-task" ><a href="{% url 'convidaEquipe' projeto.id %}" style="color: {{ projeto.cor }};"><strong>+</strong></a></div>
+                                        </div>
+                                        <div id="funcoes-botao">
+                                            <div class="excluir"> <img src="{% static 'media/icones/excluir.png'%}" alt=""> </div>
+                
+                                            <a href="{% url 'editar_projeto' projeto.id %}">
+                                                <diV class="editar"> <img src="{% static 'media/icones/botao-editar.png'%}" alt=""> </diV>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class='opcao-excluir'>
+                                        <a class='excluir-aceitar' href="{% url 'excluirProjeto' projeto.id %}">
+                                            <div >
+                                                <p><strong>Excluir</strong></p>
+                                            </div>
+                                        </a>
+                
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <p style="color:  rgba(255, 255, 255, 0);"> .</p>
+                        <div id="tasks-inline">
+                            {% for projeto, tarefas_completas, porcentagem, equipe in projetos_com_porcentagem %}
+                            <a href="{% url 'projeto' projeto.id %}">
+                                    <div class="task-inline"  data-task-id="{{ projeto.id }}">
+                                        <div class="task-header">
+                                            <div class="titulos">
+                                                <div id="tipo"style="   background-color: {{ projeto.cor }};  box-shadow: 0px 0px 6px {{ projeto.cor }};">
+                                                    <p><strong>{{ projeto.titulo|slice:":2" }}</strong></p>
+                                                </div>
+                                                <h4> {{ projeto.titulo }} </h4>
+                                            </div>
+                                            <p class="preenchido"><img src="{% static 'media/icones/relogio.png'%}" alt=""> {{ projeto.data_termino|date:'d/m/Y' }}</p>                        </div>
+                                            <div id="section-inline">
+                                                <p> {{projeto.status}}</p>
+                                            </div>
+                                        <div class="task-footer">
+                                            <div id="barra-percentual-inline">
+                                            <div id="percentual-inline" style="width: {{ porcentagem }}%; background-color: {{ projeto.cor }};  box-shadow: 0px 0px 6px {{ projeto.cor }};"></div>
+                                        </div>
+                                        <p id="valor-porcentagem">{{ porcentagem }}%</p>
+                                            <div id="funcoes-botao-inline">
+                                                <a href="#">
+                                                    <div class="excluir-inline"> <img src="{% static 'media/icones/excluir.png'%}" alt=""> </div>
+                                                </a>
+                                                <a href="{% url 'editar_projeto' projeto.id %}">
+                                                    <diV class="editar"> <img src="{% static 'media/icones/botao-editar.png'%}" alt=""> </diV>
+                                                </a>
+                                            </div>
+                
+                                        </div>
+                                        <div class='opcao-excluir-inline'>
+                                            <a href="{% url 'excluirProjeto' projeto.id %}">
+                                                <div class='excluir-aceitar-inline'>
+                                                    <p>Excluir</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                            </a>
+                            {% endfor %}
+                
+                        </div>
+                        {% endif %}
+                    </section>
+                </main>
+            </div>
+          </div>  
+    </body>
+        
+<script src="{% static 'js/tipoCard.js' %}"></script>
+<script src="{% static 'js/excluir.js' %}"></script>
+
+</html>
+{% endblock %}

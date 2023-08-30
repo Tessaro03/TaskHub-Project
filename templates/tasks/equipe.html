@@ -1,0 +1,85 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id='equipes'>
+    
+    <h2> Equipe</h2>
+    <a href="{% url 'projeto' projeto_id %}"><img style='margin:10px' src="{% static 'media/icones/botao-voltar.png' %}" alt=""></a>
+    <!-- Amigos que aceitaram o convite -->
+    <h3>Equipe</h3>
+    {% for membro in equipe %}
+                <div class='perfil-equipe'>
+                    <div class='dados-equipe'>
+                        <div id="icone-equipe">
+                            {% if not membro.usuario.avatar %}
+                                <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt="">
+                            {% else %}
+                            <img src="{{ membro.usuario.avatar.url }}" alt="foto">
+                            {% endif %}
+                        </div>
+                        <div class='info-amigo'>
+                            <a href="{% url "perfil" membro.usuario.user.id %}"> 
+                                <p><strong>{{ membro.usuario.nome }}</strong></p>
+                                <p>{{ membro.usuario.empresa }}</p>
+                            </a>
+                        </div>
+                        <a href="{% url 'remover_equipe' membro.usuario.id projeto_id %}"><div class='btn-equipe'> <strong>Remover</strong> </div></a>
+                    </div>
+                </div>
+    {% endfor %}
+    
+    <!-- Amigos com convite pendente -->
+    <h3>Enviado</h3>
+    {% for convite in convites %}
+        {% if convite.status == 'enviado' %}
+            <div class='perfil-equipe'>
+                <div class='dados-equipe'>
+                    <div id="icone-equipe">
+                        {% if not convite.convidado.avatar %}
+                            <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt="">
+                        {% else %}
+                        <img src="{{ convite.convidado.avatar.url }}" alt="foto">
+                        {% endif %}
+                    </div>
+                    <div class='info-amigo'>
+                    <a href="{% url "perfil" convite.convidado.user.id %}">
+                        <p><strong>{{ convite.convidado.nome }}</strong></p>
+                        <p>{{ convite.convidado.empresa }}</p>
+                    </a>
+                    </div>
+                    
+                    <a href="{% url 'cancelar_convite' convite.id projeto_id %}"><div class='btn-equipe'> <strong>Cancelar</strong> </div></a>
+
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+    
+    <!-- Amigos que ainda não foram convidados -->
+    <h3>Convidar</h3>
+    {% for amigo in amigos_nao_convidados %}
+        <div class='perfil-equipe'>
+            <div class='dados-equipe'>
+                <div id="icone-equipe">
+                    {% if not amigo.avatar %}
+                        <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt="">
+                    {% else %}
+                        <img src="{{ amigo.receiver.avatar.url }}" alt="foto">
+                    {% endif %}
+                </div>
+                <div class='info-amigo'>
+                    <a href="{% url "perfil" amigo.receiver.user.id %}"> 
+                        <p><strong>{{ amigo.receiver.nome }}</strong></p>
+                        <p>{{ amigo.receiver.empresa }}</p>
+                    </a>
+                </div>
+                <a href="{% url 'convidar_amigo' amigo.receiver.id projeto_id %}"><div class='btn-equipe'> <strong>Convidar</strong> </div></a>
+
+            </div>
+        </div>
+    {% endfor %}
+    
+</section>
+
+{% endblock %}

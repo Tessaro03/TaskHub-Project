@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section id='login'>
+    {% for message in messages %}
+        <div class='{{message.tags}}'> 
+            <p> <strong>{{ message }}</strong></p> 
+        </div>
+    {% endfor %}
+    <div id="header-login">
+        <a  id='icone-cadastro' href="{% url 'login' %}"><div > <strong>Login</strong> </div></a>
+        <div id='icone-login'> <p><strong>Cadastrar-se</strong></p> </div>
+    </div>
+    <form id='formulario-login' action="{% url 'cadastro'  %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        
+        <div>
+            {% for field in form.visible_fields %}
+            <div class='label-login'>
+                <label for="{{orm.id_for_label}}">  
+                    {% if field.label == "Login" %}
+                        <img src="{% static 'media/icones/do-utilizador (2).png'%}" alt="">
+                    {% elif field.label == "Email" %}
+                        <img src="{% static 'media/icones/o-email.png'%}" alt="">
+                    
+                    {% elif field.label == "Senha" %}
+                        <img src="{% static 'media/icones/cadeado.png'%}" alt="">
+                    {% elif field.label == "Senha2" %}
+                        <img src="{% static 'media/icones/cadeado.png'%}" alt="">
+                    {% endif %}
+                </label>
+                    {{field}}
+    
+                </div>
+            {% endfor %}
+        </div>
+
+        <button id='botao-cadastro' type='submit'> <h2><strong>Cadastrar-se</strong></h2></button>    
+    </form>
+   
+</section>
+{% endblock %}

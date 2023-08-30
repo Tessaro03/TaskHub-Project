@@ -1,0 +1,159 @@
+@charset "utf-8";
+
+:root{
+    --cor01: #422d87;
+    --cor02: #573FA6;
+    --cor03: #763fa6;
+    
+}
+
+* { 
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#login{
+    background-image: linear-gradient(to left, #492445, #412d7a);
+    padding-top: 30px;
+    height: 100vh;
+}
+
+
+#header-login{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #57439992;
+    margin: auto;
+    margin-bottom: 25px;
+    width: 85%;
+    max-width: 400px;
+    padding: 4px;
+    box-shadow: 0px 0px 20px #763fa612;
+
+    border-radius: 25px;
+}
+
+#icone-login{
+    margin: auto;
+    color: var(--cor01);
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    width: 45%;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+
+}
+#icone-cadastro{
+     width: 45%;
+    margin: auto;
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+
+#formulario-login{
+    position: relative;
+
+    width: 85%;
+    padding: 10px;
+    padding-bottom: 30px;
+    max-width: 450px;
+    margin: auto;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #763fa612;
+
+}
+.label-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 95%;
+    height: 50px;
+}
+
+.input-login{
+    border: 0px;
+    background-color: rgb(255, 255, 255);
+    width: 75%;
+    height: 40px;
+    margin-left: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.109);
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 5px;
+
+    font-size: 16px;
+}
+
+.input-login:focus {
+    outline: none;
+    font-size: 16px;
+}
+
+#botao-login{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,112%);
+    padding: 10px;
+    width: 60%;
+    max-width: 300px;
+    border: 0px solid white;
+    color: white;
+    background-image: linear-gradient(to right, var(--cor03), var(--cor01));
+    box-shadow: 0px 0px 20px #763fa678;
+    border-radius: 10px;
+}
+
+#botao-cadastro{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,228%);
+    padding: 10px;
+    width: 60%;
+    max-width: 300px;
+    border: 0px solid white;
+    color: white;
+    background-image: linear-gradient(to right, var(--cor03), var(--cor01));
+    box-shadow: 0px 0px 20px #763fa678;
+    border-radius: 10px;
+}
+
+#esqueceu-login{
+    text-align: center;
+    margin-top: 50px;
+    color: white;
+    text-decoration: underline;
+}
+
+
+
+#icones-login{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    margin-top: 10px;
+    width: 130px;
+}
+.icones-logar{
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50px;
+    box-shadow: 0px 0px 20px #763fa625;
+}
+
+.icones-logar > img{
+    margin-top: 9px;
+    margin-left: 9px;
+}

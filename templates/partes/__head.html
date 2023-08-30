@@ -1,0 +1,45 @@
+{% load static %}
+
+<header>
+    <a id="logo" href="{% url 'home' %}"><h1>TaskHub </h1></a>
+    {% if user.is_authenticated %}
+    <div class="header-buttons">
+            <div id="buscar-pessoas-click"><img class="buscar-pessoas-btn" src="{% static 'media/icones/procurar (1).png'%}" alt=""></div>
+        {% if notificacao == 0 %}
+            <a href="{% url 'notificações' %} "class="notificacao-btn"><img src="{% static 'media/icones/notificacao (2).png'%}" alt=""></a>
+        {% elif notificacao >= 1 %}
+            <a href="{% url 'notificações' %} "class="notificacao-btn"><img src="{% static 'media/icones/tocar-sino.png'%}" alt=""></a>
+        {% endif %}
+        <a href="{% url 'perfil' user.id %}"><div id="icone">
+            <img src="{% static 'media/icones/usuario-de-perfil.png'%}" alt="">
+        </div></a>
+    </div>
+    {% endif %}
+    
+        
+        
+</header>
+    {% if user.is_authenticated %}
+    <div id='busca-amigos'>
+        <form action="{% url "usuario" %}">
+            <input type="text" name="usuario" id="" placeholder=" Buscar Amigo...">
+        </form>
+    </div>
+    <div id="menu-tarefas">
+        <h2>Meus Projetos</h2>
+    </div>
+    <nav id="list-task">
+
+        <form action="{% url 'buscar' %}">
+            <input type="text" name="buscar" id="" placeholder=" Pesquise aqui...">
+        </form>
+        <div class="projetos">
+            {% for projeto in projetos %}
+                <a href="{% url 'projeto' projeto.id %}" ><p><strong>- {{projeto.titulo}}</strong></p></a>
+            {% endfor %}
+        </div>
+        <a href="{% url 'criarProjeto' %}"><div id="list-botao"> <strong>Criar Projeto</strong></div></a>
+    </nav>
+    {% endif %}
+<script src="{% static 'js/menuProjetos.js' %}"></script>
+

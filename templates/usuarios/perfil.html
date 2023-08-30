@@ -1,0 +1,95 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id='perfil'>
+    <div id='perfil-tela'>
+        <div id='perfil-tela-dividida'>
+    
+            
+            <div id='header-perfil'>
+                <div id="icone-perfil">
+                {% if not usuario.avatar %}
+                    <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt="">
+                {% else %}
+                    <img src="{{ usuario.avatar.url }}" alt="foto">
+                {% endif %}
+                </div>
+                <div id='pessoal-perfil'>
+                    <h4> <strong>{{ usuario.nome }} {{usuario.sobrenome}}</strong></h4>
+                    <p> {{ usuario.empresa }}</p>
+                </div>
+            </div>  
+            
+            {% if usuario.user.id == user.id %}
+            <div id='info-perfil'>
+                <a href="{% url 'userProfile'  %}"><div id='editar-perfil'> <p><strong>Editar Perfil</strong></p> </div></a>
+            </div>
+            {% else %}
+           
+                {% if situacao.status == "enviado" %}
+                <div id='info-perfil'>
+                    <a href=""><div id='editar-perfil'> <p><strong>Enviado</strong></p> </div></a>
+                </div>
+                {% elif situacao.status == "aceito"%}
+                <div id='info-perfil'>
+                    <a href="{% url 'removerAmigo' usuario.id %}"><div id='editar-perfil'> <p><strong>Remover</strong></p> </div></a>
+                </div>
+                {% else %}
+                <div id='info-perfil'>
+                    <a href="{% url 'adicionarAmigo' usuario.id %}"><div id='editar-perfil'> <p><strong>Enviar</strong></p> </div></a>
+                </div>
+                {% endif %}
+            {% endif %}
+            <p class='titulos-perfil titulo-projeto'> Projetos <p>
+        </div>
+
+        <div id='dados-profile'> 
+            <div id='projetos-perfil'>
+                <div id='equipes-perfil'>
+                    <div class='icone-projetos-perfil'><img src="{% static 'media/icones/ideia.png'%}" alt=""></img></div>
+                    <div id='equipe-perfil' >
+                        <p> <strong>Projetos</strong> </p>
+                        <p class='quantidade-equipes'> <strong>{{projetos.count}}</strong> </p>
+                    </div>
+                </div>
+                <div id='tarefas-perfil'>
+                    <div class='icone-projetos-perfil'><img src="{% static 'media/icones/verdadeiro.png'%}" alt=""></img></div>
+                    <div id='tarefa-perfil'>
+                        <p> <strong>Tarefas</strong> </p>
+                        <p class='quantidade-tarefas'> <strong>{{tarefas.count}}</strong> </p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <p class='titulos-perfil'> Amigos ({{ amigos.count }}) <p>
+    <div id='amigos-perfil'>
+        {% for amigo in amigos %}
+            <div class='amigo-perfil'>
+                {% if not amigo.receiver.avatar %}
+                    <div class='amigo-avatar'><img src="{% static 'media/icones/do-utilizador (2).png' %}" alt=""></div>
+                {% else %}
+                    <div class='amigo-avatar'><img src="{{ amigo.receiver.avatar.url }}"alt="foto"></div>
+                {% endif %}
+                <div class='amigo-dados'>
+                    <a href="{% url "perfil" amigo.receiver.user.id%}">
+                        <h4> {{ amigo.receiver.nome }} {{ amigo.receiver.sobrenome }}  </h4>
+                        <p> {{ amigo.receiver.empresa }} </p>
+                    </a>
+                </div>
+                {% if usuario.id == user.id %}
+                <a href="{% url 'removerAmigo' amigo.receiver.id %}"><img src="{% static 'media/icones/rejeitar.png'%}" alt=""></a>
+                {% else %}
+                    <div>  </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <a href="{% url "logout" %}">  
+        <div id='logout'> <p> <strong>Logout</strong> </p> </div>
+    </a>
+</section>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id='equipes'>
+    <h2> Equipe</h2>
+    <!-- Amigos que aceitaram o convite -->
+    <a href="{% url 'projeto' projeto_id %}"><img style='margin:10px' src="{% static 'media/icones/botao-voltar.png' %}" alt=""></a>
+
+    <h3>Tarefa</h3>
+    {% for usuario in usuarios%}
+    <div class='notificacao'>
+        <div class='icone-notificacao'>
+            {% if not usuario.avatar %}
+                <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt="">
+            {% else %}
+                <img src="{{ usuario.avatar.url }}"alt="foto">
+            {% endif %}
+        </div>
+        <div class='notificacao-dados'>
+            <p><strong>{{usuario.nome}}</strong></p>
+            <p>{{usuario.empresa}}</p>
+        </div>
+        <div class='notificacao-opcoes'>
+            <a href="{% url "popMembroTarefa" projeto_id usuario.id tarefa %}"><div class='notificacao-opcao recusar'><img src="{% static 'media/icones/rejeitar.png'%}" alt=""></div></a>
+        </div>
+    </div>
+    {% endfor %}
+    
+    <!-- Amigos que ainda não foram convidados -->
+    <h3>Equipe</h3>
+    {% for membro in equipe %}
+    <div class='notificacao'>
+        <div class='icone-notificacao'>
+            {% if not membro.avatar %}
+                <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt="">
+            {% else %}
+                <img src="{{ membro.avatar.url }}"alt="foto">
+            {% endif %}
+        </div>
+        <div class='notificacao-dados'>
+            <p><strong>{{membro.nome}}</strong></p>
+            <p>{{membro.empresa}}</p>
+        </div>
+        <div class='notificacao-opcoes'>
+            <a href="{% url "addMembroTarefa" projeto_id membro.id tarefa %}"><div class='notificacao-opcao aceitar'><img src="{% static 'media/icones/aceitar.png'%}" alt=""></div></a>
+        </div>
+    </div>
+    {% endfor %}
+    
+</section>
+
+{% endblock %}

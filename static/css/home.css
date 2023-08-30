@@ -1,0 +1,98 @@
+@charset "utf-8";
+
+:root{
+    --cor01: #422d87;
+    --cor02: #573FA6;
+    --cor03: #763fa6;
+    
+}
+* { 
+    
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.btn-entrar-home{
+    text-align: center;
+    height: 30px;
+    width: 80px;
+    padding-top: 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    color: white;
+    background-image: linear-gradient(to right, var(--cor01), #793fa6);
+    cursor: pointer;
+
+}
+
+
+section{
+    text-align: center;
+    padding-top: 20px;
+   
+    color: white;
+    background-color: rgba(0, 0, 0, 0.142);
+}
+
+#section-primeira-home{
+    height: calc(90vh - 22px);
+}
+
+#article-primeira-home  > h1{
+    margin: auto;
+    margin-top: 90px;
+    margin-bottom: 34px;
+    font-size: 52px;
+    text-decoration: line-through;
+    
+} 
+
+#article-primeira-home  > h2{
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 28px;
+    width: 90%;
+}
+
+
+ #article-primeira-home > h3{
+    font-size: 18px;
+    color: rgb(194, 194, 194);
+ }
+
+#btn-login-home{
+    margin: auto;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 140px;
+    padding: 6px;
+    border-radius: 5px;
+    color: white;
+    background-image: linear-gradient(to right, #7a30ce7b, #552d7a);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.087);
+    font-size: 24px;    
+}
+#btn-login-home:hover{
+    background-image: linear-gradient(to right, white, white);
+    color: #311e56;
+}
+#btn-cadastrar-home{
+    text-align: center;
+    margin: auto;
+    width: 220px;
+    padding: 8px;
+    border-radius: 5px;
+    color: white;
+    background-image: linear-gradient(to right, #7a30ce7b, #552d7a);
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.087);
+    font-size: 24px; 
+}
+
+#btn-cadastrar-home:hover{
+    background-image: linear-gradient(to right, white, white);
+    color: #311e56;
+}

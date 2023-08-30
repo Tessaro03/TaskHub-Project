@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+:root{
+    --cor01: #422d87;
+    --cor02: #573FA6;
+    --cor03: #763fa6;
+    
+}
+
+* { 
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#equipes{
+    background-image: linear-gradient(to right, #f6f8fb, #ffffff);
+    height: 99vh;
+}
+
+#equipes > h2{
+    text-align: center;
+    color: var(--cor01);
+    padding: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+#equipes > h3{
+    color: #4f4963;
+    padding: 8px;
+    padding-top: 15px;
+    font-size: 14px;
+}
+.perfil-equipe{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.dados-equipe{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 95%;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid #00000023;
+    text-align: center;
+}
+
+
+#icone-equipe{
+   margin: 5px;
+    margin-right: 0px;
+    margin-left: 10px;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;  
+}
+
+#icone-equipe > img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.info-amigo{
+    font-size: 14px;
+}
+
+.btn-equipe{
+    padding: 9px;
+    width: 80px;
+    text-align: center;
+    margin-right: 12px;
+    border-radius: 5px;
+    background-image: linear-gradient(to right, var(--cor02), var(--cor03));
+    color: white;
+}

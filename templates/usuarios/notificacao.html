@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+    <section id='notificacoes'>
+        <div class="notificacoes">
+            <h2> Notificações </h2>
+            {% if notificacaoAmigo.count == 0 %}
+                <h3>Nenhuma Solicitação de Amizade</h3>
+            {% else %}
+                <p>Solicitação de Amizade ({{notificacaoAmigo.count}})</p>
+            {% endif %}
+            {% for notificacao in notificacaoAmigo   %}
+                <div class='notificacao'>
+                    <div class='icone-notificacao'>
+                        {% if not notificacao.sender.avatar %}
+                        
+                            <img src="{% static 'media/icones/do-utilizador (2).png' %}" alt="">
+                        {% else %}
+                            <img src="{{ notificacao.sender.avatar.url }}"alt="foto">
+                        {% endif %}
+                    </div>
+                    <div class='notificacao-dados'>
+                        <a href="{% url "perfil" notificacao.sender.user.id %}">
+                            <p><strong>{{notificacao.sender.nome}}</strong></p>
+                            <p>{{notificacao.sender.empresa}}</p>
+                            
+                        </a>
+                    </div>
+                    <div class='notificacao-opcoes'>
+                        <a href="{% url 'atualizar_status' 'relationship' notificacao.id 'recusado' %}"><div class='notificacao-opcao recusar'><img src="{% static 'media/icones/rejeitar.png'%}" alt=""></div></a>
+                        <a href="{% url 'atualizar_status' 'relationship' notificacao.id 'aceito' %}"><div class='notificacao-opcao aceitar'><img src="{% static 'media/icones/aceitar.png'%}" alt=""></div></a>
+                    </div>
+                </div>
+            {% endfor %}
+            {% if notificacaoEquipe.count == 0 %}
+                <h3>Nenhuma Solicitação de Equipe</h3>
+            {% else %}
+                <p>Solicitação de Equipe ({{notificacaoEquipe.count}}) </p>
+            {% endif %}
+            {% for notificacao in notificacaoEquipe %}
+                <div class='notificacao'>
+                    <div class='notificacao-projeto' id="tipo" style="background-color: {{ notificacao.projeto.cor }}; box-shadow: 0px 0px 6px {{ notificacao.projeto.cor }};">
+                        <p><strong>{{ notificacao.projeto.titulo|slice:":2" }}</strong></p>
+                    </div>
+                    <div class='notificacao-dados'>
+                        <p><strong>{{ notificacao.projeto.titulo }}</strong></p>
+                    </div>
+                    <div class='notificacao-opcoes'>
+                        <a href="{% url 'atualizar_status' 'relationship_equipe' notificacao.id 'recusado' %}"><div class='notificacao-opcao recusar'><img src="{% static 'media/icones/rejeitar.png'%}" alt=""></div></a>
+                        <a href="{% url 'atualizar_status' 'relationship_equipe' notificacao.id 'aceito' %}"><div class='notificacao-opcao aceitar'><img src="{% static 'media/icones/aceitar.png'%}" alt=""></div></a>
+                     </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

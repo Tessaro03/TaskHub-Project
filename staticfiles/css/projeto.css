@@ -1,0 +1,302 @@
+@charset "utf-8";
+
+:root{
+    --cor01: #422d87;
+    --cor02: #573FA6;
+    --cor03: #763fa6;
+    
+}
+* { 
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#tela-projeto{
+    background-image: linear-gradient(to right, #f6f8fb, #ffffff);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+#card-projeto{
+    margin: auto;
+    width: 95%;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 10px;
+    margin-top: 10px;
+}
+#projeto-header{
+    margin: auto;
+    display: flex;
+    
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 95%;
+}
+#icone-projeto{
+    width: 35px;
+    height: 35px;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    
+    border-radius: 5px;
+   
+}
+#icone-projeto > p{
+    padding: 4px;
+    padding-top: 5px;
+    font-size: 22px;
+    color: rgb(255, 255, 255);
+}
+
+#projeto-header > h1{
+    text-align: center;
+    margin-left: 10px;
+    font-size: 22px;
+    color: #444444;
+
+}
+
+
+#projeto-descricao{
+    margin: 20px;
+   
+}
+
+#projeto-datas{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    
+    width: 98%;
+}
+.data{
+
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    padding: 7px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    
+}
+
+
+.card-tarefa{
+    margin: auto;
+    width: 95%;
+    border: 1px solid rgba(0, 0, 0, 0.393);
+    background-color: white;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.tarefa{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--cor01);
+    width: 95%;
+    margin: auto;
+    margin-top: 30px;
+
+}
+.tarefa > h1{
+    font-size: 22px;
+    color: #444444;
+}
+
+#tarefa-quantidade{
+    margin-right: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    border-radius: 5px;
+    background-color: white;
+
+}
+
+#tarefa-quantidade > p{
+    padding: 6px;
+}
+
+#tarefa-adicionar{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    border-radius: 5px;
+    font-size: 36px;
+    text-align: center;
+    background-color: white;
+}
+#criar-tarefa{
+    margin:auto;
+    background-color: white;
+    width: 90%;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    text-align: center;
+    border-radius: 5px;
+}
+#criar-tarefa > h3{
+    margin-top: 10px;
+    color: var(--cor01);
+}
+
+
+#tarefa-adicionar > p{
+    margin-top: -5px;
+    color: var(--cor01);
+}
+
+#tarefa-header{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px;
+}
+
+#tarefa-header > h3{
+    margin-top: 3px;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+#tarefa-descricao{
+    margin: 10px 20px 30px 10px;
+}
+
+#tarefa-datas{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+    width: 95%;
+}
+
+#tarefa-membros{
+    width: 95%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+
+
+.tarefa-membro{
+    margin: auto;
+    display: inline-flex;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    width: 95%;
+    height: 45px;
+    margin-top: 5px;
+    border-radius: 15px;
+    color: black;
+}
+
+
+.tarefa-membro-icone{
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    margin-top: 4px;
+    margin-left: 5px;
+}
+.dados-membro-equipe{
+    margin: auto;
+    text-align: center;
+    margin-top: 5px;
+}
+
+
+.tarefa-membro > p{
+    font-size: 18px;
+    margin-left: 10px;
+    margin-top: 12px;
+}
+#check-tarefa{
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+#tarefa-botao{
+    display: inline-flex;
+    align-items: end;
+    justify-content: end;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.tarefa-status{
+    height: 25px;
+    width: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.535);
+    border-radius: 50px;
+    background-image: linear-gradient(to right, rgb(199, 142, 255), rgb(145, 64, 244) ) 
+}
+#equipe-config{
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    margin-left: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.157);
+    border-radius: 5px;
+}
+
+#equipe-config > img{
+    margin-left: 3px;
+    margin-top: 3px;
+}
+
+#card-equipe{
+    margin: auto;
+    width: 95%;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+#card-equipe > p{
+    margin-top: 10px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+
+.equipe-membro{
+    background-color: white;
+    margin: 10px;
+    display: inline-flex;
+    border: 1px solid rgba(0, 0, 0, 0.396);
+    width: 95%;
+    height: 45px;
+    margin-top: 0px;
+    border-radius: 15px;
+    color: #000000;
+}
+
+.equipe-membro > p{
+    font-size: 18px;
+    margin-left: 10px;
+    margin-top: 12px;
+}
+
+.equipe-membro-icone{
+    border: 1px solid rgba(0, 0, 0, 0.396);
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+    margin-top: 4px;
+    margin-left: 5px;
+}
+.equipe-membro-icone > img{
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+}

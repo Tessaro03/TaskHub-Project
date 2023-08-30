@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<section id='login'>
+    {% for message in messages  %}
+    <div class='{{message.tags}}'> 
+        <strong>{{message}}</strong>
+    </div>
+    {% endfor %}
+    <div id="header-login">
+        <div id='icone-cadastro'> <p><strong>Editar Perfil</strong></p> </div>
+    </div>
+    <form id='formulario-login'action="{% url 'userProfile'  %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div>
+            {% for field in form.visible_fields %}
+            <div class='label-login'>
+                <label for="{{orm.id_for_label}}">  
+                    {% if field.label == "Nome" %}
+                        <img src="{% static 'media/icones/do-utilizador (2).png'%}" alt="">
+                    {% elif field.label == "Sobrenome" %}
+                        <img src="{% static 'media/icones/do-utilizador (2).png'%}" alt="">
+                    
+                    {% elif field.label == "Empresa" %}
+                        <img src="{% static 'media/icones/maleta-de-negocios.png'%}" alt="">
+                    {% elif field.label == "Avatar" %}
+                        <img src="{% static 'media/icones/do-utilizador (3).png'%}" alt="">
+                    {% endif %}
+                </label>
+                {{field}}
+                </div>
+            {% endfor %}
+        </div>
+
+        <button id='botao-cadastro' type='submit'> <h2><strong>Editar Perfil</strong></h2></button>    
+    </form>
+   
+</section>
+{% endblock %}
