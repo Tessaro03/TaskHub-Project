@@ -1,6 +1,6 @@
 # TaskHub
 
-![TaskHub](https://tessaro03.github.io/Portfolio/fundos/TaskHubb%20(1).png)
+<img src="https://tessaro03.github.io/Portfolio/fundos/TaskHubb%20(1).png" alt="TaskHub" width="50%">
 
 Bem-vindo ao TaskHub, uma plataforma inovadora desenvolvida do zero, destacando minhas habilidades em programação e desenvolvimento web. 🌐 Neste projeto, utilizei tecnologias poderosas como Python com o framework Django, HTML, CSS e JavaScript.
 
